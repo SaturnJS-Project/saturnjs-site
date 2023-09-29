@@ -18,9 +18,6 @@ function App() {
 
     for await (const upload of client.list()) {
       list.push(upload);
-      // return (
-      //   <tr><th>${upload.name}</th><td>${upload.cid}</td><td><a src="https://dweb.link/ipfs/"> download </a></td><td>upload.dagSize</td></tr>
-      // )
     }
     console.log(list);
     setnpmIndex(list);
