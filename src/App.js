@@ -48,13 +48,13 @@ function App() {
                     <th>Name</th>
                     <th>CID</th>
                     <th>Saturn CDN Link</th>
-                    <th>Size</th>
+                    <th>DAG Size</th>
                   </tr>
                 </thead>
                 <tbody>
                   {
                     npmIndex.map(function(upload, index) {
-                      return <tr><th>${upload.name}</th><td>${upload.cid}</td><td><a src={`https://dweb.link/ipfs/ + ${upload.cid}`}> download </a></td><td>upload.dagSize</td></tr>
+                      return <tr><th>${upload.name}</th><td>${upload.cid}</td><td><a src={`https://dweb.link/ipfs/ + ${upload.cid}`}> download </a></td><td>${upload.dagSize}</td></tr>
                     })
                   }
                 </tbody>
