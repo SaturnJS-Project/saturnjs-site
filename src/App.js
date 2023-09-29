@@ -4,12 +4,33 @@ import sjslogo from "./img/SaturnJS_logo.png";
 import Upload from "./Upload";
 import Success from "./Success";
 import Uploading from "./Uploading";
-import Error from "./Error";
+import { Web3Storage } from 'web3.storage/dist/bundle.esm.min.js'
 
 function App() {
   const [success, setSuccess] = useState([]);
   const [uploadError, setUploadError] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [npmIndex, setnpmIndex] = useState([]);
+
+  const listIndex = async (event) => {
+    const client = new Web3Storage({ token: process.env.REACT_APP_W3S_APIKEY });
+    var list = [];
+
+    for await (const upload of client.list()) {
+      list.push(upload);
+      // return (
+      //   <tr>
+      //     <th>${upload.name}</th>
+      //     <td>${upload.cid}</td>
+      //     <td><a src="https://dweb.link/ipfs/"> download </a></td>
+      //     <td>upload.dagSize</td>
+      //   </tr>
+      // )
+    }
+    console.log(list);
+  }
+
+  listIndex();
 
   return (
     <div className="App">
@@ -28,11 +49,26 @@ function App() {
               { (success.length === 0) && (uploading === false) ? <Upload setSuccess={setSuccess} setUploadError={setUploadError} setUploading={setUploading} /> :null }
               { success.length !== 0 ? <Success success={success} setSuccess={setSuccess} setUploading={setUploading} /> : null }
               { uploading ? <Uploading setUploading={setUploading}/> : null }
+              <h1>NPM Package Index</h1>
+              <p> A list of NPM package name and IPFS CIDs.</p>
+              <table aria-label="Vanilla framework table example">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>CID</th>
+                    <th>Saturn CDN Link</th>
+                    <th>Size</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {/* ${listIndex()} */}
+                </tbody>
+              </table>
+              
+
+              <br/>
             </div>
           </div>
-        </div>
-        <div className="l-end">
-          
         </div>
       </div>
     </div>

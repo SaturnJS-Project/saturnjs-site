@@ -17,9 +17,7 @@ export const Upload = ({setSuccess, setUploadError, setUploading}) => {
       } catch (e) {
           setUploadError(true);
           console.log("Failed..." + e.message);
-          for await (const upload of client.list()) {
-            console.log(`${upload.name} - cid: ${upload.cid} - size: ${upload.dagSize}`)
-          }
+
           setUploading(false);
       }
     };
