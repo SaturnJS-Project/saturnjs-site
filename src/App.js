@@ -19,18 +19,12 @@ function App() {
     for await (const upload of client.list()) {
       list.push(upload);
       // return (
-      //   <tr>
-      //     <th>${upload.name}</th>
-      //     <td>${upload.cid}</td>
-      //     <td><a src="https://dweb.link/ipfs/"> download </a></td>
-      //     <td>upload.dagSize</td>
-      //   </tr>
+      //   <tr><th>${upload.name}</th><td>${upload.cid}</td><td><a src="https://dweb.link/ipfs/"> download </a></td><td>upload.dagSize</td></tr>
       // )
     }
     console.log(list);
+    setnpmIndex(list);
   }
-
-  listIndex();
 
   return (
     <div className="App">
@@ -61,10 +55,14 @@ function App() {
                   </tr>
                 </thead>
                 <tbody>
-                  {/* ${listIndex()} */}
+                  {
+                    npmIndex.map(function(upload, index) {
+                      return <tr><th>${upload.name}</th><td>${upload.cid}</td><td><a src={`https://dweb.link/ipfs/ + ${upload.cid}`}> download </a></td><td>upload.dagSize</td></tr>
+                    })
+                  }
                 </tbody>
               </table>
-              
+              <button onClick={listIndex}>Get Index</button>
 
               <br/>
             </div>
