@@ -33,7 +33,7 @@ export const Upload = ({setSuccess, setUploadError, setUploading}) => {
       <div>
         <form method="post" action="#" id="#"  onSubmit={onSubmit}>
           <label htmlFor="uploadPackageFile"><h3>Select NPM Package Name</h3></label>
-          <p>/{package_name/}/@/{version_name/}_/{actual_js_filename.js/}</p>
+          {/* <p>/{package_name/}/@/{version_name/}_/{actual_js_filename.js/}</p> */}
           <br/>
           <input className="form-control" type="file" id="exampleInputFile" name="exampleInputFile" onChange={onInputChange} style={{width: "80%", border: "1px solid #ccc"}} multiple></input>
           <br/>
